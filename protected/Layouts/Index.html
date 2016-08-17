@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Minimal web-application based on T4 framework</title>
-  {{ publishCss() }}
+    <meta charset="UTF-8">
+    <title>Minimal web-application based on T4 framework</title>
+    {{ publishCss() }}
 </head>
 <body>
-{% block content %}{% endblock %}
-{{ publishJs() }}
+    <div class="container">
+        <div class="alert alert-info">
+            {% if app.user %}
+                Добро пожаловать, {{ app.user.firstName }}!
+                <br>
+                <a href="/user/logout.html">Выход</a>
+            {% else %}
+                <a href="/user/login.html">Вход на сайт</a> |
+                <a href="/user/register.html">Регистрация</a>
+            {% endif %}
+        </div>
+        {% block content %}
+        {% endblock %}
+    </div>
+    {{ publishJs() }}
 </body>
 </html>

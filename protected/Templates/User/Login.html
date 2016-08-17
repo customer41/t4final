@@ -1,0 +1,42 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+    <h3>Авторизация пользователя</h3>
+
+    {% for error in errors %}
+        <div class="row">
+            <div class="col-sm-5 alert alert-danger">
+                {{ error.getMessage() }}
+            </div>
+        </div>
+    {% endfor %}
+
+    <form class="form-horizontal" action="/user/login.html" method="post">
+        <div class="form-group">
+            <label for="email" class="col-sm-1 control-label">Email</label>
+            <div class="col-sm-4">
+                <input type="email" class="form-control" id="email" name="login[email]">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="pass" class="col-sm-1 control-label">Пароль</label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control" id="pass" name="login[password]">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-4">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="login[remember]"> Запомнить меня
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-4">
+                <button type="submit" class="btn btn-default">Войти</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
