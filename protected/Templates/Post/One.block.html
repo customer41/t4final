@@ -1,0 +1,10 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3>{{ item.title }}</h3>
+        {% set author = item.author %}
+        <small>Опубликовано: {{ item.published }} | Автор: {{ author.firstName }} {{ author.lastName }}</small>
+    </div>
+    <div class="panel-body">
+        {{ item.content | raw }}
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница не найдена</title>
+</head>
+<body>
+    <h2>Ошибка 404!</h2>
+    <p>Запрашиваемая страница не найдена</p>
+    {% if app.user.isAdmin or app.user.isModerator %}
+        <a href="/admin/">Админ-панель</a>
+    {% endif %}
+    <a href="/">Вернуться на сайт</a>
+</body>
+</html>

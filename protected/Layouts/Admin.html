@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ app.config.title }}</title>
+    {{ publishCss() }}
+</head>
+<body>
+<div class="container">
+    <div class="alert alert-info">
+        {% if app.user %}
+            Добро пожаловать, {{ app.user.firstName }}!
+            <a href="/user/logout/" class="text-muted"> (Выйти)</a>
+            {% if app.user.isAdmin or app.user.isModerator %}
+                <br>Вы {{ app.user.getRoleTitles[0] }} сайта и находитесь в разделе "Админ-панель"
+            {% endif %}
+            <a href="/" class="text-muted"> (Вернуться на сайт)</a>
+        {% endif %}
+    </div>
+    {% block content %}
+    {% endblock %}
+</div>
+{{ publishJs() }}
+</body>
+</html>

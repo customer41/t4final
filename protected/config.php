@@ -12,8 +12,19 @@ return [
     ],
 
     'extensions' => [
+        'jquery' => [],
         'bootstrap' => [
             'theme' => 'cosmo',
         ],
+        'ckeditor' => [
+            'location' => 'local',
+        ],
     ],
+
+    'errors' => [
+        404 => '//Error/404',
+        403 => '//Error/403',
+    ],
+
+    'title' => 'Блог Александра Попова',
 ];

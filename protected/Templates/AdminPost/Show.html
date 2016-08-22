@@ -1,0 +1,20 @@
+{% extends 'Admin.html' %}
+
+{% block content %}
+    <h2><a href="/admin/">Админ-панель</a> / <a href="/adminPost/">Посты</a> / Просмотр и удаление постов</h2>
+    {% if null != message %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endif %}
+    {% if id is defined %}
+        <t4:block path="//Post/One(id={{ id }})"/>
+    {% endif %}
+    <h3>Заголовки постов:</h3>
+    <ul>
+        {% for item in items %}
+        <li>
+            <a href="/adminPost/show?id={{ item.getPk }}">{{ item.title }}</a>
+            <a href="/adminPost/delete?id={{ item.getPk }}"><i class="glyphicon glyphicon-remove"></i></a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

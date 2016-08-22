@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Minimal web-application based on T4 framework</title>
+    <title>{{ app.config.title }}</title>
     {{ publishCss() }}
 </head>
 <body>
@@ -10,11 +10,17 @@
         <div class="alert alert-info">
             {% if app.user %}
                 Добро пожаловать, {{ app.user.firstName }}!
-                <br>
-                <a href="/user/logout.html">Выход</a>
+                <a href="/user/logout/" class="text-muted"> (Выйти)</a>
+                {% if app.user.isAdmin or app.user.isModerator %}
+                    <br>
+                    Вы {{ app.user.getRoleTitles[0] }} сайта
+                    <a href="/admin/" class="text-muted"> (Админ-панель)</a>
+                {% endif %}
             {% else %}
-                <a href="/user/login.html">Вход на сайт</a> |
-                <a href="/user/register.html">Регистрация</a>
+                Добро пожаловать, Гость!
+                <br>
+                <a href="/user/login/" class="text-muted">(Войти на сайт)</a> |
+                <a href="/user/register/" class="text-muted">(Зарегистрироваться)</a>
             {% endif %}
         </div>
         {% block content %}

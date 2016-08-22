@@ -1,0 +1,12 @@
+{% extends 'Admin.html' %}
+
+{% block content %}
+    <h2><a href="/admin/">Админ-панель</a> / Посты</h2>
+    <h4>На данный момент для администрирования Вам доступны следующие действия:</h4>
+    <div class="list-group">
+        {% if app.user.isAdmin %}
+            <a href="/adminPost/show/" class="list-group-item">Просмотр и удаление постов</a>
+            <a href="/adminPost/add/" class="list-group-item">Добавление постов</a>
+        {% endif %}
+    </div>
+{% endblock %}

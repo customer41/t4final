@@ -21,8 +21,29 @@ class User
 
         'relations' => [
             'roles' => ['type' => self::MANY_TO_MANY, 'model' => Role::class, 'on' => '__user_roles_to_users'],
+            'posts' => ['type' => self::HAS_MANY, 'model' => Post::class],
         ],
     ];
+    
+    public function isAdmin()
+    {
+        return $this->roles->existsElement(['name' => 'Admin']);
+    }
+    
+    public function isModerator()
+    {
+        return $this->roles->existsElement(['name' => 'Moderator']);
+    }
+
+    public function getRoleTitles()
+    {
+        return $this->roles->collect('title');
+    }
+
+    public function getRoleNames()
+    {
+        return $this->roles->collect('name');
+    }
 
     protected function validatePassword($val)
     {
