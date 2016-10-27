@@ -1,0 +1,13 @@
+{% extends 'Admin.html' %}
+
+{% block content %}
+    <h2><a href="/admin/">Админ-панель</a> / Комментарии к постам</h2>
+    <h4>На данный момент для администрирования Вам доступны следующие действия:</h4>
+    <div class="list-group">
+        {% if app.user.isAdmin %}
+            <a href="/adminComment/show/" class="list-group-item">Просмотр, редактирование и удаление комментариев</a>
+        {% elseif app.user.isModerator %}
+            <a href="/adminComment/show/" class="list-group-item">Просмотр и редактирование комментариев</a>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% if items is empty %}
+    <h3>Пока комментариев нет</h3>
+{% else %}
+    {% for item in items %}
+        {% set author = item.author %}
+        {% set role = author.roles[0] %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h5>
+                    <b>{{ author.firstName }} {{ author.lastName }}</b><br>
+                    <small class="text-warning">{{ role.title }}</small><br>
+                    <small>{{ item.published }}</small>
+                </h5>
+                <p>{{ item.body }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}

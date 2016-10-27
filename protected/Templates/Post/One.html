@@ -1,7 +1,7 @@
 {% extends 'Index.html' %}
 
 {% block content %}
-    <a href="/">На главную</a>
+    <h3><a href="/">На главную</a></h3>
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3>{{ item.title }}</h3>
@@ -12,4 +12,17 @@
             {{ item.content | raw }}
         </div>
     </div>
+    {% if null != message %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+    {% if null == app.user %}
+        <h3>
+            Для добавления комментариев нужно
+            <a href="/user/register/"> зарегистрироваться</a> или
+            <a href="/user/login/"> войти</a>
+        </h3>
+    {% else %}
+        <t4:block path="//Comment/Add(id_post={{ item.getPk }})" />
+    {% endif %}
+    <t4:block path="//Comment/Show(id_post={{ item.getPk }})" />
 {% endblock %}

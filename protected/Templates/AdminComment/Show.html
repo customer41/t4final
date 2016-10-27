@@ -1,0 +1,45 @@
+{% extends 'Admin.html' %}
+
+{% block content %}
+    {% if app.user.isAdmin %}
+        <h2><a href="/admin/">Админ-панель</a> / <a href="/adminComment/">Комментарии к постам</a> / Просмотр, редактирование и удаление</h2>
+    {% elseif app.user.isModerator %}
+        <h2><a href="/admin/">Админ-панель</a> / <a href="/adminComment/">Комментарии к постам</a> / Просмотр и редактирование</h2>
+    {% endif %}
+    {% if null != message %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endif %}
+    <h3>Выберете пост, комментарии к которому Вы хотите модерировать...</h3>
+    <ul>
+        {% for item in items %}
+            <li>
+                <a href="/adminComment/show?id_post={{ item.getPk }}">{{ item.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% if comments is defined %}
+        {% for comment in comments %}
+            {% set author = comment.author %}
+            {% set role = author.roles[0] %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5>
+                        <b>{{ author.firstName }} {{ author.lastName }}</b><br>
+                        <small class="text-warning">{{ role.title }}</small><br>
+                        <small>{{ comment.published }}</small>
+                    </h5>
+                    <form action="/adminComment/edit?id={{ comment.getPk }}" method="post">
+                        <label for="body"></label>
+                        <textarea id="body" name="body" cols="150" rows="2">{{ comment.body }}</textarea><br>
+                        <input type="submit" value="Редактировать">
+                        {% if app.user.isAdmin %}
+                            <button formaction="/adminComment/delete?id={{ comment.getPk }}">Удалить</button>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Пока комментариев нет...</p>
+    {% endif %}
+{% endblock %}

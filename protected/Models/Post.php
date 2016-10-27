@@ -16,7 +16,7 @@ class Post
 
         'relations' => [
             'author' => ['type' => self::BELONGS_TO, 'model' => User::class],
-            //'comments' => ['type' => self::HAS_MANY, 'model' => Comment::class],
-        ]
+            'comments' => ['type' => self::HAS_MANY, 'model' => Comment::class],
+        ],
     ];
 }

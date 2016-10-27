@@ -8,9 +8,9 @@
             <a href="#" class="list-group-item">Пользователи</a>
             <a href="#" class="list-group-item">Роли пользователей</a>
             <a href="/adminPost/" class="list-group-item">Посты</a>
-            <a href="#" class="list-group-item">Комментарии к постам</a>
+            <a href="/adminComment/" class="list-group-item">Комментарии к постам</a>
         {% elseif app.user.isModerator %}
-            <a href="#" class="list-group-item">Комментарии к постам</a>
+            <a href="/adminComment/" class="list-group-item">Комментарии к постам</a>
         {% endif %}
     </div>
 {% endblock %}

@@ -19,5 +19,6 @@ class Post
             $this->redirect('/error/404/');
         }
         $this->data->item = $item;
+        $this->data->message = $this->app->flash->message;
     }
 }

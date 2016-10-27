@@ -22,6 +22,7 @@ class User
         'relations' => [
             'roles' => ['type' => self::MANY_TO_MANY, 'model' => Role::class, 'on' => '__user_roles_to_users'],
             'posts' => ['type' => self::HAS_MANY, 'model' => Post::class],
+            'comments' => ['type' => self::HAS_MANY, 'model' => Comment::class],
         ],
     ];
     
